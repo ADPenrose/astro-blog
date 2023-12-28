@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: My Second Blog Post
+title: My thoughts so far
 author: Arturo Avila
 description: It is really weird, but yet so fun, writting stuff in MD
 image:
