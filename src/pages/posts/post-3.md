@@ -1,4 +1,5 @@
 ---
+layout: ../../layouts/MarkdownPostLayout.astro
 title: My Third Blog Post
 author: Arturo Avila
 description: "I haven't asked anything on the community yet, but they seem really chill"

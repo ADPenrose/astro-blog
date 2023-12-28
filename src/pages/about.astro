@@ -1,12 +1,5 @@
 ---
-// Importing a stylesheet
-import '../styles/global.css';
-
-// Importing the header component
-import Header from '../components/Header.astro'
-// Importing the footer component
-import Footer from '../components/Footer.astro';
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = 'About Me';
 const identity = {
 	firstName:'Arturo',
@@ -24,33 +17,8 @@ const skillColor = 'navy'
 const fontWeight = 'bold'
 const textCase = 'uppercase'
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<!-- Accessing variables from within the code fence using the define:vars directive -->
-		<title>{pageTitle}</title>
-		<style define:vars={{skillColor, fontWeight, textCase}}>
-      h1 {
-        color: purple;
-        font-size: 4rem;
-      }
-
-			.skill {
-				color: var(--skillColor);
-				font-weight: var(--fontWeight);
-				text-transform: var(--textCase);
-			}
-    </style>
-	</head>
-	<body>
-		<Header />
-
-		<h1>{pageTitle}</h1>
-    <h2>...and this awesome Astro site!</h2>
+<BaseLayout pageTitle={pageTitle}>
+  <h2>...and this awesome Astro site!</h2>
     <p>Im working thourgh the getting started Astro tutorial. This is the second page of the project, but actually, the first one that I am building completely from scratch!</p>
 		<p>I will update this site as I complete more sections of the tutorial, so keep tuned in to check that out!</p>
 
@@ -68,13 +36,4 @@ const textCase = 'uppercase'
 		{finished && <p>I finished this tutorial!</p>}
 
 		{goal === 7 ? <p>My goal is to finish in 7 days.</p> : <p>My goal is not to finish in 7 days.</p>}
-
-		<Footer />
-
-		{/* Adding a script for the hamburger menu functionality */}
-		<script>
-			import "../scripts/menu.js"
-		</script>
-		
-	</body>
-</html>
+</BaseLayout>
