@@ -1,39 +1,67 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = 'About Me';
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "About Me";
 const identity = {
-	firstName:'Arturo',
-	country: 'Mexico',
-	occupation: 'Software Developer',
-	hobbies: ['Reading', 'Coding', 'Gaming', 'Watching Movies']
-}
-const skills = ["HTML", "CSS", "JavaScript", "Python", "Docker", "React", "Astro"]
+  firstName: "Arturo",
+  country: "Mexico",
+  occupation: "Software Developer",
+  hobbies: ["Reading", "Coding", "Gaming", "Watching Movies"],
+};
+const skills = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "Python",
+  "Docker",
+  "React",
+  "Astro",
+];
 
 const happy = true;
-const finished = false;
+const finished = true;
 const goal = 7;
 
-const skillColor = 'navy'
-const fontWeight = 'bold'
-const textCase = 'uppercase'
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
+
 <BaseLayout pageTitle={pageTitle}>
   <h2>...and this awesome Astro site!</h2>
-    <p>Im working thourgh the getting started Astro tutorial. This is the second page of the project, but actually, the first one that I am building completely from scratch!</p>
-		<p>I will update this site as I complete more sections of the tutorial, so keep tuned in to check that out!</p>
+  <p>
+    Im working thourgh the getting started Astro tutorial. This is the second
+    page of the project, but actually, the first one that I am building
+    completely from scratch!
+  </p>
+  <p>
+    I will update this site as I complete more sections of the tutorial, so keep
+    tuned in to check that out!
+  </p>
 
-		<p>For the curious souls out there, here is a bit of info about me:</p>
-		<ul>
-			<li>My name is {identity.firstName}.</li>
-			<li>I live in {identity.country} and I work as a {identity.occupation}</li>
-			{identity.hobbies.length >= 2 && <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>}
-		</ul>
-		<p>My skills are:</p>
-		<ul>{skills.map(skill => <li class="skill">{skill}</li>)}</ul>
+  <p>For the curious souls out there, here is a bit of info about me:</p>
+  <ul>
+    <li>My name is {identity.firstName}.</li>
+    <li>I live in {identity.country} and I work as a {identity.occupation}</li>
+    {
+      identity.hobbies.length >= 2 && (
+        <li>
+          Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}
+        </li>
+      )
+    }
+  </ul>
+  <p>My skills are:</p>
+  <ul>{skills.map((skill) => <li class="skill">{skill}</li>)}</ul>
 
-		{happy && <p>I am happy to be learning Astro!</p>}
+  {happy && <p>I am happy to be learning Astro!</p>}
 
-		{finished && <p>I finished this tutorial!</p>}
+  {finished && <p>I finished this tutorial!</p>}
 
-		{goal === 7 ? <p>My goal is to finish in 7 days.</p> : <p>My goal is not to finish in 7 days.</p>}
+  {
+    goal === 7 ? (
+      <p>My goal is to finish in 7 days.</p>
+    ) : (
+      <p>My goal is not to finish in 7 days.</p>
+    )
+  }
 </BaseLayout>
