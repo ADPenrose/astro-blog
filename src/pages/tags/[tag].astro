@@ -1,29 +1,36 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import BlogPost from '../../components/BlogPost.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPost from "../../components/BlogPost.astro";
 
 // Returns an array of page routes, and all of them will use the template
 // defined on this file. In other words, each one of these tags will have
 // a page generated with the same template.
 export async function getStaticPaths() {
   // This makes data from all of our blog posts available to each page route.
-  const allPosts = await Astro.glob('../posts/*.md')
+  const allPosts = await getCollection("posts");
 
   // Getting all of the unique tags that I have on my posts.
-  const uniqueTags = [...new Set(allPosts.flatMap(post => post.frontmatter.tags))]
+  const uniqueTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
 
   // Using props on dynamic routes.
-  return uniqueTags.map(tag => {
-    const filteredPosts = allPosts.filter(post => post.frontmatter.tags.includes(tag));
-    return { params: { tag }, props: { posts: filteredPosts } }
-  })
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.includes(tag),
+    );
+    return { params: { tag }, props: { posts: filteredPosts } };
+  });
 }
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-
 ---
+
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
-  {posts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
+  {
+    posts.map((post) => (
+      <BlogPost url={`/posts/${post.slug}/`} title={post.data.title} />
+    ))
+  }
 </BaseLayout>

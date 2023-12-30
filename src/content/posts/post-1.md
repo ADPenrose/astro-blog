@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: Using Markdown on Astro
 pubDate: 2023-12-27
 description: "This is the first post of my new Astro blog."
